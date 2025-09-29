@@ -172,7 +172,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             content: Text('Sign up success'),
                           ),
                         );
-
                         // lalu pindah ke Sign In dan hapus semua route sebelumnya
                         Navigator.pushNamedAndRemoveUntil(
                           context,
