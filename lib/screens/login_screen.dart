@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 44,
+        height: 46,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo
+                // logo
                 Image.asset(
                   'assets/logo-mola.png',
                   height: 80,
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 18),
 
-                // Judul
+                // judul
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Align(
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 14),
 
-                // Card form
+                // card form
                 Container(
                   width: 360,
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -147,17 +147,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 6),
 
                       primaryButton('Sign In Now', () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sign In tapped')),
-                        );
+                        if (_email.text.isEmpty || _pass.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Email dan Password tidak boleh kosong!',
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        } else {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/dashboard',
+                            (route) => false,
+                          );
+                        }
                       }),
                       const SizedBox(height: 14),
 
                       Center(
                         child: TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, SignupScreen.route);
-                          },
+                          onPressed: () =>
+                              Navigator.pushNamed(context, SignupScreen.route),
                           child: const Text(
                             'Create New Account',
                             style: TextStyle(fontSize: 13),
