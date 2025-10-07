@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
+import 'splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
 
-    // tombol biru dengan gradient (UI-only)
+    // tombol biru dengan gradient (pakai parameter posisional)
     Widget primaryButton(String label, VoidCallback onTap) => GestureDetector(
       onTap: onTap,
       child: Container(
@@ -92,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 14),
 
-                // card form
+                // card form (dibangun manual)
                 Container(
                   width: 360,
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -146,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 6),
 
+                      // pemanggilan primaryButton disesuaikan (posisional)
                       primaryButton('Sign In Now', () {
                         if (_email.text.isEmpty || _pass.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -159,11 +161,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         } else {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            '/dashboard',
+                            SplashScreen.route,
                             (route) => false,
                           );
                         }
                       }),
+
                       const SizedBox(height: 14),
 
                       Center(
