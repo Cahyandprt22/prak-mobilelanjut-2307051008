@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
-import 'package:myapp/screens/dashboard_screen.dart'; // ✅ sudah diimport
+import 'screens/dashboard_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() => runApp(const JustduitApp());
 
@@ -12,9 +13,9 @@ class JustduitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'JustduIt',
+      title: 'Justduit',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF5F6F8), // abu-abu muda
+        scaffoldBackgroundColor: const Color(0xFFFFF5F6), // abu-abu muda
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E88FF)),
         inputDecorationTheme: InputDecorationTheme(
@@ -27,26 +28,26 @@ class JustduitApp extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
+            borderSide: const BorderSide(color: Color(0xFFEE0E0E0)),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
+            borderSide: const BorderSide(color: Color(0xFFEE0E0E0)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(color: Color(0xFF1E88FF)),
           ),
         ),
-      ), // ThemeData
-      // ✅ pastikan initialRoute sesuai dengan daftar di routes
+      ),
       initialRoute: LoginScreen.route,
-
       routes: {
-        LoginScreen.route: (context) => const LoginScreen(),
-        SignupScreen.route: (context) => const SignupScreen(),
-        DashboardScreen.route: (context) => const DashboardScreen(),
-      }, // routes
-    ); // MaterialApp
+        '/': (context) => const LoginScreen(), // default Sign In
+        '/signin': (context) => const LoginScreen(),
+        '/signup': (_) => SignupScreen(),
+        '/dashboard': (_) => DashboardScreen(),
+        '/splash': (_) => SplashScreen(),
+      },
+    );
   }
 }
